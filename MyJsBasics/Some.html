@@ -1,0 +1,40 @@
+
+<!DOCTYPE HTML>
+<html lang="en">
+  <head>
+  <meta charset="utf-8">
+  <meta name="description" content="A page for exploring basics HTML ANd JS">
+  <title>Basic JS</title>
+  <script src="SomeJs.js" defer></script>
+
+          <script type="text/javascript">  
+            var re = /(?:\d{3}|\(\d{3}\))([-\/\.])\d{3}\1\d{4}/;  
+            function testInfo(phoneInput) {  
+              var OK = re.exec(phoneInput.value);  
+              if (!OK)  
+                window.alert(phoneInput.value + ' isn\'t a phone number with area code!');  
+              else
+                window.alert('Thanks, your phone number is ' + OK[0]);  
+            }  
+
+            fetch('../gallery-start/images/coffee1.jpg')
+              .then(response => response.blob())
+              .then(myBlob => {
+                let objectURL = URL.createObjectURL(myBlob);
+                let image = document.createElement('img');
+                image.src = objectURL;
+                document.body.appendChild(image);
+              })
+              .catch(e => {
+                console.log('There has been a problem with your fetch operation: ' + e.message);
+              });
+          </script>  
+        </head>  
+        <body>  
+          <p>Enter your phone number (with area code) and then click "Check".
+              <br>The expected format is like ###-###-####.</p>
+          <form action="#">  
+            <input id="phone"><button onclick="testInfo(document.getElementById('phone'));">Check</button>
+          </form>  
+        </body>  
+  </html>
